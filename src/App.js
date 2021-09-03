@@ -1,3 +1,4 @@
+import "./App.css";
 import Header from "./components/layout/Header";
 import { Container, Row, Col } from "react-bootstrap";
 
@@ -5,9 +6,9 @@ function App() {
   return (
     <>
       <Header />
-      <Container>
+      <Container className="bg-white">
         <Row>
-          <Col md={4} className="vh-100 w-100 bg-dark"></Col>
+          <Col lg={{ span: 8, offset: 1 }} className="vh-100 w-100"></Col>
         </Row>
       </Container>
     </>
