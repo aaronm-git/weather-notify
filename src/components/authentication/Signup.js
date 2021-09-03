@@ -1,7 +1,7 @@
 import { Row, Col, Form, Button } from "react-bootstrap";
 import { PersonPlusFill, DoorOpenFill } from "react-bootstrap-icons";
 
-const Login = () => {
+const Signup = () => {
   return (
     <Row>
       <Col
@@ -9,7 +9,7 @@ const Login = () => {
         className="vh-100 w-100"
         style={{ paddingTop: "4rem" }}
       >
-        <h1>Login</h1>
+        <h1>Sign up</h1>
         <Form>
           <Form.Group className="mb-3" controlId="formBasicEmail">
             <Form.Label>Email address</Form.Label>
@@ -24,17 +24,17 @@ const Login = () => {
             <Form.Control type="password" placeholder="Password" />
           </Form.Group>
           <Button variant="primary" type="submit">
-            <DoorOpenFill className="mb-1 mr-2" />
-            Login
+            <PersonPlusFill className="mb-1 mr-2" />
+            Sign up
           </Button>
           <Button
-            variant="success"
+            variant="secondary"
             type="button"
             href="/signup"
             className="mx-2"
           >
-            <PersonPlusFill className="mb-1 mr-2" />
-            Sign up
+            <DoorOpenFill className="mb-1 mr-2" />
+            Login
           </Button>
         </Form>
       </Col>
@@ -42,4 +42,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default Signup;

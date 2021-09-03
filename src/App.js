@@ -1,16 +1,31 @@
 import "./App.css";
 import Header from "./components/layout/Header";
 import { Container, Row, Col } from "react-bootstrap";
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Redirect,
+} from "react-router-dom";
+// Pages
+import Dashboard from "./components/Dashboard";
+import Login from "./components/authentication/Login";
+import Signup from "./components/authentication/Signup";
 
 function App() {
   return (
     <>
-      <Header />
-      <Container className="bg-white">
-        <Row>
-          <Col lg={{ span: 8, offset: 1 }} className="vh-100 w-100"></Col>
-        </Row>
-      </Container>
+      <Router>
+        <Header />
+        <Container className="bg-white">
+          <Switch>
+            <Redirect exact from="/" to="/login" />
+            <Route path="/login" component={Login} />
+            <Route path="/signup" component={Signup} />
+            <Route path="/dashboard" component={Dashboard} />
+          </Switch>
+        </Container>
+      </Router>
     </>
   );
 }
