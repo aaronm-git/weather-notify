@@ -1,7 +1,8 @@
 import React, { useRef, useState } from "react";
 import { Row, Col, Form, Button, Alert } from "react-bootstrap";
-import { PersonPlusFill, DoorOpenFill } from "react-bootstrap-icons";
+import { PersonPlusFill } from "react-bootstrap-icons";
 import { useAuth } from "../contexts/AuthContext";
+import { Link } from "react-router-dom";
 
 const Signup = () => {
   const emailRef = useRef();
@@ -23,6 +24,7 @@ const Signup = () => {
       setError("");
       setLoading(true);
       await signup(emailRef.current.value, passwordRef.current.value);
+      setLoading(false);
     } catch (error) {
       setError(error.message);
       console.error(error);
@@ -48,9 +50,6 @@ const Signup = () => {
               required
               ref={emailRef}
             />
-            <Form.Text className="text-muted">
-              We'll never share your email with anyone else.
-            </Form.Text>
           </Form.Group>
 
           <Form.Group className="mb-3" controlId="formBasicPassword">
@@ -76,17 +75,11 @@ const Signup = () => {
           </Form.Group>
           <Button variant="primary" type="submit" disabled={loading}>
             <PersonPlusFill className="mb-1 mr-2" />
-            Sign up
+            Sign Up
           </Button>
-          <Button
-            variant="secondary"
-            type="button"
-            href="/signup"
-            className="mx-2"
-          >
-            <DoorOpenFill className="mb-1 mr-2" />
-            Login
-          </Button>
+          <p className="mt-3">
+            Don't have an account? <Link to="/login">Log In</Link>
+          </p>
         </Form>
       </Col>
     </Row>
