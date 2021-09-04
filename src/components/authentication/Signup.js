@@ -1,7 +1,35 @@
-import { Row, Col, Form, Button } from "react-bootstrap";
+import React, { useRef, useState } from "react";
+import { Row, Col, Form, Button, Alert } from "react-bootstrap";
 import { PersonPlusFill, DoorOpenFill } from "react-bootstrap-icons";
+import { useAuth } from "../contexts/AuthContext";
 
 const Signup = () => {
+  const emailRef = useRef();
+  const passwordRef = useRef();
+  const passwordConfirmationRef = useRef();
+
+  const { signup } = useAuth();
+  const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
+
+  async function handleSubmit(e) {
+    e.preventDefault();
+
+    if (passwordRef.current.value !== passwordConfirmationRef.current.value) {
+      return setError("Passwords do not match");
+    }
+
+    try {
+      setError("");
+      setLoading(true);
+      await signup(emailRef.current.value, passwordRef.current.value);
+    } catch (error) {
+      setError(error.message);
+      console.error(error);
+      setLoading(false);
+    }
+  }
+
   return (
     <Row>
       <Col
@@ -10,10 +38,16 @@ const Signup = () => {
         style={{ paddingTop: "4rem" }}
       >
         <h1>Sign up</h1>
-        <Form>
+        {error && <Alert variant="danger">{error}</Alert>}
+        <Form onSubmit={handleSubmit}>
           <Form.Group className="mb-3" controlId="formBasicEmail">
             <Form.Label>Email address</Form.Label>
-            <Form.Control type="email" placeholder="Enter email" />
+            <Form.Control
+              type="email"
+              placeholder="Enter email"
+              required
+              ref={emailRef}
+            />
             <Form.Text className="text-muted">
               We'll never share your email with anyone else.
             </Form.Text>
@@ -21,9 +55,26 @@ const Signup = () => {
 
           <Form.Group className="mb-3" controlId="formBasicPassword">
             <Form.Label>Password</Form.Label>
-            <Form.Control type="password" placeholder="Password" />
+            <Form.Control
+              type="password"
+              placeholder="Password"
+              required
+              ref={passwordRef}
+            />
           </Form.Group>
-          <Button variant="primary" type="submit">
+          <Form.Group
+            className="mb-3"
+            controlId="formBasicPasswordConfirmation"
+          >
+            <Form.Label>Password Confirmation</Form.Label>
+            <Form.Control
+              type="password"
+              placeholder="Password"
+              required
+              ref={passwordConfirmationRef}
+            />
+          </Form.Group>
+          <Button variant="primary" type="submit" disabled={loading}>
             <PersonPlusFill className="mb-1 mr-2" />
             Sign up
           </Button>

@@ -7,6 +7,7 @@ import {
   Route,
   Redirect,
 } from "react-router-dom";
+import { AuthProvider } from "./components/contexts/AuthContext";
 // Pages
 import Dashboard from "./components/Dashboard";
 import Login from "./components/authentication/Login";
@@ -14,7 +15,7 @@ import Signup from "./components/authentication/Signup";
 
 function App() {
   return (
-    <>
+    <AuthProvider>
       <Router>
         <Header />
         <Container className="bg-white">
@@ -26,7 +27,7 @@ function App() {
           </Switch>
         </Container>
       </Router>
-    </>
+    </AuthProvider>
   );
 }
 
