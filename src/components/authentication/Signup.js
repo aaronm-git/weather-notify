@@ -2,12 +2,13 @@ import React, { useRef, useState } from "react";
 import { Row, Col, Form, Button, Alert } from "react-bootstrap";
 import { PersonPlusFill } from "react-bootstrap-icons";
 import { useAuth } from "../contexts/AuthContext";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 
 const Signup = () => {
   const emailRef = useRef();
   const passwordRef = useRef();
   const passwordConfirmationRef = useRef();
+  const history = useHistory();
 
   const { signup } = useAuth();
   const [error, setError] = useState("");
@@ -24,7 +25,7 @@ const Signup = () => {
       setError("");
       setLoading(true);
       await signup(emailRef.current.value, passwordRef.current.value);
-      setLoading(false);
+      history.push("/dashboard");
     } catch (error) {
       setError(error.message);
       console.error(error);

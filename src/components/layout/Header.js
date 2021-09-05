@@ -1,12 +1,26 @@
-import React from "react";
-import { Container, Navbar, Nav } from "react-bootstrap";
+import { useState } from "react";
+import { Link, useHistory } from "react-router-dom";
+import { Container, Navbar, Nav, Button } from "react-bootstrap";
 import {
   CloudSun,
   PersonPlusFill,
   DoorClosedFill,
 } from "react-bootstrap-icons";
+import { useAuth } from "../contexts/AuthContext";
 
 const Header = () => {
+  const [error, setError] = useState("");
+  const { currentUser, logout } = useAuth();
+  const history = useHistory();
+  const handleLogout = async () => {
+    try {
+      await logout();
+      history.push("/login");
+    } catch (error) {
+      console.error(error);
+      setError(error.message);
+    }
+  };
   return (
     <Navbar bg="light" expand="lg">
       <Container>
@@ -23,17 +37,25 @@ const Header = () => {
             <Nav.Link href="/login">Login</Nav.Link>
           </Nav>
           <Nav className="ml-auto">
-            <Navbar.Text className="mr-3">
-              Signed in as: <strong>Mark Otto</strong>
-            </Navbar.Text>
-            <Nav.Link className="btn btn-danger text-white" href="/logout">
-              <DoorClosedFill className="mb-1 mr-2" />
-              Log Out
-            </Nav.Link>
-            <Nav.Link className="btn btn-success text-white" href="/signup">
-              <PersonPlusFill className="mb-1 mr-2" />
-              Sign up
-            </Nav.Link>
+            {currentUser ? (
+              <>
+                <Navbar.Text className="mr-3">
+                  Signed in as: <strong>{currentUser.email}</strong>
+                </Navbar.Text>
+                <Button
+                  className="btn btn-danger text-white"
+                  onClick={handleLogout}
+                >
+                  <DoorClosedFill className="mb-1 mr-2" />
+                  Log Out
+                </Button>
+              </>
+            ) : (
+              <Nav.Link className="btn btn-success text-white" href="/signup">
+                <PersonPlusFill className="mb-1 mr-2" />
+                Sign up
+              </Nav.Link>
+            )}
           </Nav>
         </Navbar.Collapse>
       </Container>

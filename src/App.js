@@ -8,6 +8,7 @@ import {
   Redirect,
 } from "react-router-dom";
 import { AuthProvider } from "./components/contexts/AuthContext";
+import { PrivateRoute } from "./components/PrivateRoute";
 // Pages
 import Dashboard from "./components/Dashboard";
 import Login from "./components/authentication/Login";
@@ -16,14 +17,14 @@ import Signup from "./components/authentication/Signup";
 function App() {
   return (
     <AuthProvider>
+      <Header />
       <Router>
-        <Header />
         <Container className="bg-white">
           <Switch>
             <Redirect exact from="/" to="/login" />
             <Route path="/login" component={Login} />
             <Route path="/signup" component={Signup} />
-            <Route path="/dashboard" component={Dashboard} />
+            <PrivateRoute path="/dashboard" component={Dashboard} />
           </Switch>
         </Container>
       </Router>

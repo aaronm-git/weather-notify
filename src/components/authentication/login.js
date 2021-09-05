@@ -1,13 +1,13 @@
-import React, { useRef, useState } from "react";
+import { useRef, useState } from "react";
 import { Row, Col, Form, Button, Alert } from "react-bootstrap";
 import { DoorOpenFill } from "react-bootstrap-icons";
 import { useAuth } from "../contexts/AuthContext";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 
-const Signup = () => {
+const Login = () => {
   const emailRef = useRef();
   const passwordRef = useRef();
-
+  const history = useHistory();
   const { login } = useAuth();
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
@@ -19,7 +19,7 @@ const Signup = () => {
       setError("");
       setLoading(true);
       await login(emailRef.current.value, passwordRef.current.value);
-      setLoading(false);
+      history.push("/dashboard");
     } catch (error) {
       setError(error.message);
       console.error(error);
@@ -69,4 +69,4 @@ const Signup = () => {
   );
 };
 
-export default Signup;
+export default Login;
