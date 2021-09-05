@@ -22,7 +22,7 @@ const Header = () => {
     }
   };
   return (
-    <Navbar bg="light" expand="lg">
+    <Navbar bg="light" expand="lg" fixed="top">
       <Container>
         <Navbar.Brand href="/">
           Weather
@@ -31,10 +31,11 @@ const Header = () => {
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
-          <Nav className="">
+          <Nav>
             <Nav.Link href="https://aaronmolina.me">Aaron Molina</Nav.Link>
-            <Nav.Link href="/dashboard">Dashboard</Nav.Link>
-            <Nav.Link href="/login">Login</Nav.Link>
+            <Link to="/dashboard" className="nav-link">
+              Dashboard
+            </Link>
           </Nav>
           <Nav className="ml-auto">
             {currentUser ? (
@@ -45,16 +46,22 @@ const Header = () => {
                 <Button
                   className="btn btn-danger text-white"
                   onClick={handleLogout}
+                  type="button"
                 >
                   <DoorClosedFill className="mb-1 mr-2" />
                   Log Out
                 </Button>
               </>
             ) : (
-              <Nav.Link className="btn btn-success text-white" href="/signup">
-                <PersonPlusFill className="mb-1 mr-2" />
-                Sign up
-              </Nav.Link>
+              <>
+                <Link to="/login" className="nav-link mr-3">
+                  Log In
+                </Link>
+                <Link to="/signup" className="btn btn-success text-white">
+                  <PersonPlusFill className="mb-1 mr-2" />
+                  Sign up
+                </Link>
+              </>
             )}
           </Nav>
         </Navbar.Collapse>

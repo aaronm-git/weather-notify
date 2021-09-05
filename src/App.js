@@ -17,9 +17,9 @@ import Signup from "./components/authentication/Signup";
 function App() {
   return (
     <AuthProvider>
-      <Header />
       <Router>
-        <Container className="bg-white">
+        <Header />
+        <Container className="bg-white" style={{ paddingTop: "80px" }}>
           <Switch>
             <Redirect exact from="/" to="/login" />
             <Route path="/login" component={Login} />

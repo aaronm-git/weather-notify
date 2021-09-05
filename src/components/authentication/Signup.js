@@ -2,7 +2,7 @@ import React, { useRef, useState } from "react";
 import { Row, Col, Form, Button, Alert } from "react-bootstrap";
 import { PersonPlusFill } from "react-bootstrap-icons";
 import { useAuth } from "../contexts/AuthContext";
-import { Link, useHistory } from "react-router-dom";
+import { Link, useHistory, Redirect } from "react-router-dom";
 
 const Signup = () => {
   const emailRef = useRef();
@@ -10,7 +10,7 @@ const Signup = () => {
   const passwordConfirmationRef = useRef();
   const history = useHistory();
 
-  const { signup } = useAuth();
+  const { currentUser, signup } = useAuth();
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
 
@@ -33,13 +33,11 @@ const Signup = () => {
     }
   }
 
-  return (
+  return currentUser ? (
+    <Redirect to="/dashboard" />
+  ) : (
     <Row>
-      <Col
-        lg={{ span: 4, offset: 4 }}
-        className="vh-100 w-100"
-        style={{ paddingTop: "4rem" }}
-      >
+      <Col lg={{ span: 4, offset: 4 }} className="vh-100 w-100">
         <h1>Sign up</h1>
         {error && <Alert variant="danger">{error}</Alert>}
         <Form onSubmit={handleSubmit}>
