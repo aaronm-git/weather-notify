@@ -56,7 +56,7 @@ const Login = () => {
             />
           </Form.Group>
           <Button variant="primary" type="submit" disabled={loading}>
-            <DoorOpenFill className="mb-1 mr-2" />
+            <DoorOpenFill className="icon-spacing" />
             Log In
           </Button>
           <p className="mt-3">

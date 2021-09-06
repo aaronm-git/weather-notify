@@ -73,7 +73,7 @@ const Signup = () => {
             />
           </Form.Group>
           <Button variant="primary" type="submit" disabled={loading}>
-            <PersonPlusFill className="mb-1 mr-2" />
+            <PersonPlusFill className="icon-spacing" />
             Sign Up
           </Button>
           <p className="mt-3">

@@ -10,7 +10,7 @@ import {
 import { AuthProvider } from "./components/contexts/AuthContext";
 import { PrivateRoute } from "./components/PrivateRoute";
 // Pages
-import Dashboard from "./components/Dashboard";
+import Dashboard from "./components/Dashboard/Dashboard";
 import Login from "./components/authentication/Login";
 import Signup from "./components/authentication/Signup";
 

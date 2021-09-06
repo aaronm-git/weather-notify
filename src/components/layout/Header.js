@@ -5,6 +5,7 @@ import {
   CloudSun,
   PersonPlusFill,
   DoorClosedFill,
+  BoxArrowUpRight,
 } from "react-bootstrap-icons";
 import { useAuth } from "../contexts/AuthContext";
 
@@ -32,10 +33,15 @@ const Header = () => {
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav>
-            <Nav.Link href="https://aaronmolina.me">Aaron Molina</Nav.Link>
-            <Link to="/dashboard" className="nav-link">
-              Dashboard
-            </Link>
+            <Nav.Link href="https://aaronmolina.me" target="_blank">
+              <BoxArrowUpRight className="icon-spacing" />
+              Aaron Molina
+            </Nav.Link>
+            {currentUser ? (
+              <Link to="/dashboard" className="nav-link">
+                Dashboard
+              </Link>
+            ) : null}
           </Nav>
           <Nav className="ml-auto">
             {currentUser ? (
@@ -48,7 +54,7 @@ const Header = () => {
                   onClick={handleLogout}
                   type="button"
                 >
-                  <DoorClosedFill className="mb-1 mr-2" />
+                  <DoorClosedFill className="icon-spacing" />
                   Log Out
                 </Button>
               </>
@@ -58,7 +64,7 @@ const Header = () => {
                   Log In
                 </Link>
                 <Link to="/signup" className="btn btn-success text-white">
-                  <PersonPlusFill className="mb-1 mr-2" />
+                  <PersonPlusFill className="icon-spacing" />
                   Sign up
                 </Link>
               </>
