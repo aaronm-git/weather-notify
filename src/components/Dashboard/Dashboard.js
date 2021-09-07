@@ -1,5 +1,5 @@
-import { useState } from "react";
-import { Row, Col, Card, Alert } from "react-bootstrap";
+import { useState, useEffect } from "react";
+import { Row, Col, Form, Alert } from "react-bootstrap";
 import { useAuth } from "../Contexts/AuthContext";
 // Components
 import Search from "./Search";
@@ -7,8 +7,9 @@ import Selected from "./Selected";
 
 const Dashboard = () => {
   const [error, setError] = useState("");
-  const { currentUser } = useAuth();
+  const [alert, setAlert] = useState("");
   const [selected, setSelected] = useState([]);
+  const [checked, setChecked] = useState(false);
 
   return (
     <>
@@ -17,12 +18,27 @@ const Dashboard = () => {
           {error}
         </Alert>
       )}
+      {alert && (
+        <Alert variant="danger" dismissible onClose={() => setError("")}>
+          {alert}
+        </Alert>
+      )}
       <Row>
         <Col lg={6}>
           <Search setSelected={setSelected} setError={setError} />
         </Col>
         <Col lg={6}>
-          <Selected selected={selected} setError={setError} />
+          <Form.Check
+            type="checkbox"
+            label="Alert"
+            onChange={(e) => setChecked(e.target.checked)}
+          />
+          <Selected
+            selected={selected}
+            setError={setError}
+            setAlert={setAlert}
+            checked={checked}
+          />
         </Col>
       </Row>
     </>
