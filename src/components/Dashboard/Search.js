@@ -1,20 +1,25 @@
 import React, { useState, useEffect } from "react";
 import { Form } from "react-bootstrap";
 import { weatherAutoComplete } from "../../utils/weatherApi";
-import { AsyncTypeahead } from "react-bootstrap-typeahead"; // ES2015
+import { Typeahead } from "react-bootstrap-typeahead"; // ES2015
 import "react-bootstrap-typeahead/css/Typeahead.css";
 
-const Search = () => {
+const Search = ({ setSelected, setError }) => {
   const [cityResults, setCityResults] = useState([]);
   const [loading, setLoading] = useState(false);
 
   const handleSearch = async (query) => {
     if (query.length) {
-      setLoading(true);
-      const results = await weatherAutoComplete(query);
-      setLoading(false);
-      console.log(results);
-      setCityResults(results);
+      try {
+        setLoading(true);
+        const results = await weatherAutoComplete(query);
+        setLoading(false);
+        setCityResults(results);
+      } catch (error) {
+        console.error(error);
+        setError(error.message);
+        setLoading(false);
+      }
     }
   };
 
@@ -22,17 +27,18 @@ const Search = () => {
     <Form>
       <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
         <Form.Label>Search</Form.Label>
-        <AsyncTypeahead
+        <Typeahead
           id="cityList"
           isLoading={loading}
-          onSearch={handleSearch}
           onInputChange={handleSearch}
-          options={cityResults.map((city) => city.name)}
+          onChange={setSelected}
+          options={cityResults}
+          labelKey={"name"}
           placeholder="Search for a city..."
           maxResults={5}
+          filterBy={() => true}
           multiple
           autoFocus
-          delay={500}
         />
       </Form.Group>
     </Form>
