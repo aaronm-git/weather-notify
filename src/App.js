@@ -1,5 +1,4 @@
 import "./App.css";
-import Header from "./components/Layout/Header";
 import { Container, Row, Col } from "react-bootstrap";
 import {
   BrowserRouter as Router,
@@ -9,7 +8,8 @@ import {
 } from "react-router-dom";
 import { AuthProvider } from "./components/Contexts/AuthContext";
 import { PrivateRoute } from "./components/PrivateRoute";
-// Pages
+// Components
+import Header from "./components/Layout/Header";
 import Dashboard from "./components/Dashboard/Dashboard";
 import Login from "./components/Authentication/Login";
 import Signup from "./components/Authentication/Signup";
