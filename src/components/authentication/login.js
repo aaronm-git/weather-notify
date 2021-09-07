@@ -3,7 +3,7 @@ import { Row, Col, Form, Button, Alert } from "react-bootstrap";
 import { DoorOpenFill } from "react-bootstrap-icons";
 import { Link, useHistory, Redirect } from "react-router-dom";
 
-import { useAuth } from "../contexts/AuthContext";
+import { useAuth } from "../Contexts/AuthContext";
 
 const Login = () => {
   const emailRef = useRef();

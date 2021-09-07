@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Row, Col, Card, Alert } from "react-bootstrap";
-import { useAuth } from "../contexts/AuthContext";
+import { useAuth } from "../Contexts/AuthContext";
 // Components
 import Search from "./Search";
 import Selected from "./Selected";

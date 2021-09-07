@@ -1,5 +1,5 @@
 import "./App.css";
-import Header from "./components/layout/Header";
+import Header from "./components/Layout/Header";
 import { Container, Row, Col } from "react-bootstrap";
 import {
   BrowserRouter as Router,
@@ -7,12 +7,12 @@ import {
   Route,
   Redirect,
 } from "react-router-dom";
-import { AuthProvider } from "./components/contexts/AuthContext";
+import { AuthProvider } from "./components/Contexts/AuthContext";
 import { PrivateRoute } from "./components/PrivateRoute";
 // Pages
 import Dashboard from "./components/Dashboard/Dashboard";
-import Login from "./components/authentication/Login";
-import Signup from "./components/authentication/Signup";
+import Login from "./components/Authentication/Login";
+import Signup from "./components/Authentication/Signup";
 
 function App() {
   return (
