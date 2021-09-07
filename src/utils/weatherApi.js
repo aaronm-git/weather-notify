@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const baseUrl = "http://api.weatherapi.com/v1";
+const baseUrl = "https://api.weatherapi.com/v1";
 
 export const getWeather = (url) => {
   return axios
