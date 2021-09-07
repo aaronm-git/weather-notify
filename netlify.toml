@@ -1,3 +1,5 @@
+command = "CI= yarn build"
+
 [[redirects]]
   from = "/*"
   to = "/"
