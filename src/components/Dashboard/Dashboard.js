@@ -1,6 +1,5 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { Row, Col, Form, Alert } from "react-bootstrap";
-import { useAuth } from "../Contexts/AuthContext";
 // Components
 import Search from "./Search";
 import Selected from "./Selected";
@@ -33,12 +32,7 @@ const Dashboard = () => {
             label="Alert"
             onChange={(e) => setChecked(e.target.checked)}
           />
-          <Selected
-            selected={selected}
-            setError={setError}
-            setAlert={setAlert}
-            checked={checked}
-          />
+          <Selected selected={selected} setAlert={setAlert} checked={checked} />
         </Col>
       </Row>
     </>

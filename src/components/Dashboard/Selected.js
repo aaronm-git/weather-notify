@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { getWeather } from "../../utils/weatherApi";
-import { Row, Col, ListGroup, Form, Badge } from "react-bootstrap";
-import _, { set } from "lodash";
+import { Row, Col, ListGroup, Badge } from "react-bootstrap";
 
-const Selected = ({ selected, setError, checked }) => {
+const Selected = ({ selected, checked }) => {
   const [cities, setCities] = useState([]);
 
   useEffect(() => {

@@ -1,18 +1,18 @@
 import "./App.css";
-import { Container, Row, Col } from "react-bootstrap";
+import { Container } from "react-bootstrap";
 import {
   BrowserRouter as Router,
   Switch,
   Route,
   Redirect,
 } from "react-router-dom";
-import { AuthProvider } from "./components/Contexts/AuthContext";
+import { AuthProvider } from "./components/contexts/AuthContext";
 import { PrivateRoute } from "./components/PrivateRoute";
 // Components
-import Header from "./components/Layout/Header";
-import Dashboard from "./components/Dashboard/Dashboard";
-import Login from "./components/Authentication/Login";
-import Signup from "./components/Authentication/Signup";
+import Header from "./components/layout/Header";
+import Dashboard from "./components/dashboard/Dashboard";
+import Login from "./components/auth/Login";
+import Signup from "./components/auth/Signup";
 
 function App() {
   return (

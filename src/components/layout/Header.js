@@ -7,7 +7,7 @@ import {
   DoorClosedFill,
   BoxArrowUpRight,
 } from "react-bootstrap-icons";
-import { useAuth } from "../Contexts/AuthContext";
+import { useAuth } from "../contexts/AuthContext";
 
 const Header = () => {
   const [error, setError] = useState("");
